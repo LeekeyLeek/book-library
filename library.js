@@ -1,42 +1,47 @@
 let myLibrary = [];
-const liveLibrary = document.querySelector('.library')
+let liveLibrary = document.getElementById('library')
+let bookList = document.getElementById('collection')
 
-//Constructor
 function Book(title, author, pages, read) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read,
-    this.info = function() {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
-    },
-    console.log(this.info)
+    this.read = read
 };
 
-
-//Functions
-function addBookToLibrary() {
-    //temporary. will later on take user input. Test multiple books
-    let newBook = new Book('Inheritance', 'Paolini', '1,000', 'yes')
+function render() {
     
+   for (let i = 0; i < myLibrary.length; i++) {
+
+        let newItem = document.createElement('div')
+        bookList.appendChild(newItem)
+
+        for (let [key, value] of Object.entries(newBook)) {
+            console.log(`${key}: ${value}`);
+            newItem.innerHTML += `${key}: ${value}`
+        };
+
+   };
+    
+};
+
+function addBookToLibrary() {
+
+    let title = document.getElementById('title').value
+    let author = document.getElementById('author').value
+    let pages = document.getElementById('pages').value
+    let read = document.getElementById('read').checked
+    let newBook = new Book(title, author, pages, read)
     myLibrary.push(newBook)
     console.log(myLibrary)
     render()
 };
 
-function render() {
-    for (let i = 0; i < myLibrary.length; i++) {
-        liveLibrary.innerHTML += myLibrary[i]
-    };
-};
-
 function displayForm() {
-
+    let formDisplay = document.getElementById('formContainer')
+    if (formDisplay.style.display === "none") {
+        formDisplay.style.display = "block";
+    } else { 
+        formDisplay.style.display = "none";
+    }
 };
-
-//Buttons
-let newBookButton = document.getElementById('newBook')
-newBookButton.addEventListener('click', function(e) {
-
-
-});
