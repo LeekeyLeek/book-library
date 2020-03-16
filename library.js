@@ -9,22 +9,6 @@ function Book(title, author, pages, read) {
     this.read = read
 };
 
-function render() {
-    
-   for (let i = 0; i < myLibrary.length; i++) {
-
-        let newItem = document.createElement('div')
-        bookList.appendChild(newItem)
-
-        for (let [key, value] of Object.entries(newBook)) {
-            console.log(`${key}: ${value}`);
-            newItem.innerHTML += `${key}: ${value}`
-        };
-
-   };
-    
-};
-
 function addBookToLibrary() {
 
     let title = document.getElementById('title').value
@@ -34,7 +18,23 @@ function addBookToLibrary() {
     let newBook = new Book(title, author, pages, read)
     myLibrary.push(newBook)
     console.log(myLibrary)
+
+    function render() {
+
+        let newItem = document.createElement('div')
+        newItem.classList.add = 'books';
+        bookList.appendChild(newItem)
+        
+    
+        for (let [key, value] of Object.entries(newBook)) {
+            console.log(`${key}: ${value}`);
+            newItem.innerHTML += `${key}: ${value}`
+        };
+    
+    };
+
     render()
+
 };
 
 function displayForm() {
