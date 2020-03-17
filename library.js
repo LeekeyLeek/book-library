@@ -1,5 +1,4 @@
 let myLibrary = [];
-let liveLibrary = document.getElementById('library')
 let bookList = document.getElementById('collection')
 
 function Book(title, author, pages, read) {
@@ -15,26 +14,57 @@ function addBookToLibrary() {
     let author = document.getElementById('author').value
     let pages = document.getElementById('pages').value
     let read = document.getElementById('read').checked
-    let newBook = new Book(title, author, pages, read)
-    myLibrary.push(newBook)
-    console.log(myLibrary)
+    if(title === ''|| author === '' || pages === '' || readStatus === '') {
 
-    function render() {
+        alert('Please complete all fields!')
+        return;
+    
+    } else {
 
-        let newItem = document.createElement('div')
-        newItem.classList.add = 'books';
-        bookList.appendChild(newItem)
+        let newBook = new Book(title, author, pages, read)
+        myLibrary.push(newBook)
+        console.log(myLibrary)
+
+        function render() {
+
+            let bookContainer = document.createElement('div')
+            bookContainer.className += 'bookContainer';
+
+            let bookDetails = document.createElement('div')
+            bookDetails.className += 'bookInfo';
+
+            bookList.appendChild(bookContainer)
+            bookContainer.appendChild(bookDetails)
+
+
+            function bookElements() {
+                let bookTitle = document.createElement('h4')
+                    bookTitle.className += 'bookTitle';
+                let bookAuthor = document.createElement('h5')
+                    bookAuthor.className += 'bookAuthor';
+
+                bookDetails.appendChild(bookTitle)
+                    bookDetails.appendChild('br')
+                bookDetails.appendChild(bookAuthor)
+                    bookDetails.appendChild('br')
+
+                bookTitle.innerHTML = title;
+                bookAuthor.innerHTML = author;
+            
+            };
         
+            //Might have to send key/values to diff divs in this loop
+            for (let [key, value] of Object.entries(newBook)) {
+                console.log(`${key}: ${value}`);
+                bookDetails.innerHTML += `${key}: ${value}`
+            
+            };
     
-        for (let [key, value] of Object.entries(newBook)) {
-            console.log(`${key}: ${value}`);
-            newItem.innerHTML += `${key}: ${value}`
         };
-    
+
+        render()
+
     };
-
-    render()
-
 };
 
 function displayForm() {
