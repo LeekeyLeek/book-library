@@ -14,7 +14,7 @@ function addBookToLibrary() {
     let author = document.getElementById('author').value
     let pages = document.getElementById('pages').value
     let read = document.getElementById('read').checked
-    if(title === ''|| author === '' || pages === '' || readStatus === '') {
+    if(title === ''|| author === '' || pages === '' || read === '') {
 
         alert('Please complete all fields!')
         return;
@@ -31,41 +31,36 @@ function addBookToLibrary() {
             bookContainer.className += 'bookContainer';
 
             let bookDetails = document.createElement('div')
-            bookDetails.className += 'bookInfo';
+            bookDetails.className += 'bookDetails';
 
             bookList.appendChild(bookContainer)
             bookContainer.appendChild(bookDetails)
-
-
-            function bookElements() {
+        
+        
                 let bookTitle = document.createElement('h4')
                     bookTitle.className += 'bookTitle';
-                let bookAuthor = document.createElement('h5')
+                let bookAuthor = document.createElement('h4')
                     bookAuthor.className += 'bookAuthor';
-
+                let bookPages = document.createElement('h4')
+                    bookPages.className += 'bookPages';
+            
                 bookDetails.appendChild(bookTitle)
-                    bookDetails.appendChild('br')
                 bookDetails.appendChild(bookAuthor)
-                    bookDetails.appendChild('br')
-
-                bookTitle.innerHTML = title;
-                bookAuthor.innerHTML = author;
+                bookDetails.appendChild(bookPages)
             
-            };
-        
-            //Might have to send key/values to diff divs in this loop
-            for (let [key, value] of Object.entries(newBook)) {
-                console.log(`${key}: ${value}`);
-                bookDetails.innerHTML += `${key}: ${value}`
+                bookTitle.innerHTML += newBook.title;
+                bookAuthor.innerHTML += newBook.author;
+                bookPages.innerHTML += `${newBook.pages} pages total`;
             
-            };
-    
         };
 
         render()
 
     };
 };
+
+
+
 
 function displayForm() {
     let formDisplay = document.getElementById('formContainer')
