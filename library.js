@@ -8,12 +8,30 @@ function Book(title, author, pages, read) {
     this.read = read
 };
 
+Book.prototype.toggleRead = function(bookRead){ 
+
+    switch(this.read) {
+        case true:
+            bookRead.innerHTML = 'Unfinished';
+            return this.read = false
+        case false:
+            bookRead.innerHTML = 'Finished';
+            return this.read = true
+    }
+
+};
+
+Book.prototype.deleteBook = function(){
+
+};
+
 function addBookToLibrary() {
 
     let title = document.getElementById('title').value
     let author = document.getElementById('author').value
     let pages = document.getElementById('pages').value
     let read = document.getElementById('read').checked
+    
     if(title === ''|| author === '' || pages === '' || read === '') {
 
         alert('Please complete all fields!')
@@ -29,7 +47,6 @@ function addBookToLibrary() {
 
             let bookContainer = document.createElement('div')
             bookContainer.className += 'bookContainer';
-
             let bookDetails = document.createElement('div')
             bookDetails.className += 'bookDetails';
 
@@ -43,14 +60,41 @@ function addBookToLibrary() {
                     bookAuthor.className += 'bookAuthor';
                 let bookPages = document.createElement('h4')
                     bookPages.className += 'bookPages';
+                let bookRead = document.createElement('h4')
+                    bookRead.className += 'bookRead';
+
+
+                let dltButton = document.createElement('button')
+                    dltButton.className += 'dltButton';
+                    dltButton.innerHTML += 'Delete this book'
+                    dltButton.addEventListener('click', function(e) {
+                        //deleteButton() here
+                    });
+
+                let readButton = document.createElement('button')
+                    readButton.className += 'readButton';
+                    readButton.innerHTML += 'Change read status'
+                    readButton.addEventListener('click', function(e) {
+                        newBook.toggleRead(bookRead)
+                    });
             
                 bookDetails.appendChild(bookTitle)
                 bookDetails.appendChild(bookAuthor)
                 bookDetails.appendChild(bookPages)
+                bookDetails.appendChild(bookRead)
+
+                bookDetails.appendChild(readButton)
+                bookDetails.appendChild(dltButton)
             
-                bookTitle.innerHTML += newBook.title;
-                bookAuthor.innerHTML += newBook.author;
-                bookPages.innerHTML += `${newBook.pages} pages total`;
+                bookTitle.innerHTML = newBook.title;
+                bookAuthor.innerHTML = newBook.author;
+                bookPages.innerHTML = `${newBook.pages} pages total`;
+                if (newBook.read === true) {
+                    bookRead.innerHTML = 'Finished';
+                } else { 
+                    bookRead.innerHTML = 'Unfinished';
+                }
+                
             
         };
 
@@ -58,9 +102,6 @@ function addBookToLibrary() {
 
     };
 };
-
-
-
 
 function displayForm() {
     let formDisplay = document.getElementById('formContainer')

@@ -26,6 +26,7 @@
     padding: 15px;
 }
 
+/*Book details*/
 .bookTitle {
 
 
@@ -36,5 +37,17 @@
 }
 
 .bookPages {
+
+}
+
+.bookRead {
+
+}
+
+.dltButton {
+
+}
+
+.readButton {
     
 }
