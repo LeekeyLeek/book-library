@@ -21,7 +21,10 @@ Book.prototype.toggleRead = function(bookRead){
 
 };
 
-Book.prototype.deleteBook = function(){
+Book.prototype.deleteBook = function(bookContainer, newBook){
+    
+    bookList.removeChild(bookContainer)
+    myLibrary.splice(newBook, 1)
 
 };
 
@@ -68,7 +71,7 @@ function addBookToLibrary() {
                     dltButton.className += 'dltButton';
                     dltButton.innerHTML += 'Delete this book'
                     dltButton.addEventListener('click', function(e) {
-                        //deleteButton() here
+                        newBook.deleteBook(bookContainer)
                     });
 
                 let readButton = document.createElement('button')
