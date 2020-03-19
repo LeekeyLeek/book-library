@@ -21,12 +21,17 @@ Book.prototype.toggleRead = function(bookRead){
 
 };
 
-Book.prototype.deleteBook = function(bookContainer, newBook){
+Book.prototype.deleteBook = function(bookContainer){
     
     bookList.removeChild(bookContainer)
-    myLibrary.splice(newBook, 1)
+    myLibrary.splice(this.newBook, 1)
 
 };
+
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
 
 function addBookToLibrary() {
 
@@ -47,9 +52,11 @@ function addBookToLibrary() {
         console.log(myLibrary)
 
         function render() {
-
+            bookList.style.border = '5px solid #e09797';
             let bookContainer = document.createElement('div')
             bookContainer.className += 'bookContainer';
+            bookContainer.style.backgroundColor = random_rgba();
+
             let bookDetails = document.createElement('div')
             bookDetails.className += 'bookDetails';
 
